@@ -6,11 +6,6 @@ interface ListProps {
 
 const ListItem: React.FC<ListProps> = ({ item }) => {
   return (
-    // <li>
-    //   {item.id} |{item.talentName} | {item.talentGrade} | {item.jobManagerName}{" "}
-    //   |{item.totalHours} |{item.industry} {item.clientName}
-    // </li>
-
     <tr className="bg-white border-b hover:bg-gray-50">
       <th
         scope="row"
@@ -21,9 +16,11 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
           src="/docs/images/people/profile-picture-1.jpg"
           alt="Jese image"
         /> */}
-        <div className="pl-3">
+        <div>
           <div className="text-base font-semibold">{item.clientName}</div>
-          <div className="font-normal text-gray-500">{item.jobManagerName}</div>
+          <div className="font-normal text-gray-500">
+            Managed by: {item.jobManagerName}
+          </div>
         </div>
       </th>
       <td className="py-4 px-6">{item.industry}</td>
@@ -43,14 +40,45 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
         </div>
       </td>
       <td className="py-4 px-6">
+        {item.bookingGrade ? <>{item.bookingGrade}</> : "n/a"}
+      </td>
+      <td className="py-4 px-6">
         {item.talentName ? (
           <>{item.talentName}</>
         ) : (
           <div className="text-center">-</div>
         )}
       </td>
-      <td className="py-4 px-6">{item.startDate}</td>
-      <td className="py-4 px-6">{item.endDate}</td>
+      <td scope="row" className="py-4 px-6 text-gray-900 whitespace-nowrap">
+        <div>
+          <div>{item.officeCity}</div>
+          <div className="font-normal text-gray-500">
+            Postal Code: {item.officePostalCode}
+          </div>
+        </div>
+      </td>
+      <td className="py-4 px-6">
+        {(item.requiredSkills || []).map((skill, idx) =>
+          idx === (item.requiredSkills || []).length - 1 ? (
+            <span>{skill.name}</span>
+          ) : (
+            <span>{skill.name}, </span>
+          )
+        )}
+        {item.requiredSkills?.length === 0 && <>n/a</>}
+      </td>
+      <td
+        scope="row"
+        className="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap"
+      >
+        <div>
+          <div className="">{item.startDate}</div>
+          <div className="">{item.endDate}</div>
+          <div className="font-normal text-gray-500 mt-1">
+            Total Hours: {item.totalHours} hrs
+          </div>
+        </div>
+      </td>
     </tr>
   );
 };

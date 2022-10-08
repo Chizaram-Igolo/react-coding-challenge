@@ -12,13 +12,19 @@ export default function TableHeader() {
           Status
         </th>
         <th scope="col" className="py-3 px-6">
+          Booking Grade
+        </th>
+        <th scope="col" className="py-3 px-6">
           Talent Name
         </th>
         <th scope="col" className="py-3 px-6">
-          Start Date
+          Office City
         </th>
         <th scope="col" className="py-3 px-6">
-          End Date
+          Skills
+        </th>
+        <th scope="col" className="py-3 px-6">
+          Time Duration
         </th>
       </tr>
     </thead>
