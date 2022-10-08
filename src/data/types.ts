@@ -1,3 +1,8 @@
+interface ISkills {
+  name?: string;
+  category?: string;
+}
+
 export interface IData {
   id: number;
   originalId: string;
@@ -17,6 +22,6 @@ export interface IData {
   clientId: string;
   industry: string;
   isUnassigned: boolean;
-  requiredSkills: [{ name?: string; category?: string }];
-  optionalSkills: [{ name?: string; category?: string }];
+  requiredSkills?: ISkills[];
+  optionalSkills?: ISkills[];
 }
