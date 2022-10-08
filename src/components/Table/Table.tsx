@@ -4,6 +4,7 @@ import List from "components/List/List";
 import { IData } from "data/types";
 import TableFooter from "./TableFooter";
 import { paginate } from "../../utils/paginate";
+import TableHeader from "./TableHeader";
 
 interface TableProps {
   data: IData[];
@@ -23,10 +24,17 @@ const Table: React.FC<TableProps> = ({ data }) => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline uppercase text-red-800">
-        Hello world!
-      </h1>
-      <List data={paginatedData} />
+      {/* <List data={paginatedData} /> */}
+
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500">
+          <TableHeader />
+          <tbody>
+            <List data={paginatedData} />
+          </tbody>
+        </table>
+      </div>
+
       <TableFooter
         itemsCount={10000}
         pageSize={pageSize}

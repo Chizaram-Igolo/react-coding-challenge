@@ -7,11 +7,11 @@ interface ListProps {
 
 const List: React.FC<ListProps> = ({ data }) => {
   return (
-    <ul>
+    <>
       {data.map((item) => (
         <ListItem item={item} key={item.originalId} />
       ))}
-    </ul>
+    </>
   );
 };
 
