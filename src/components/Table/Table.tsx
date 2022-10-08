@@ -1,13 +1,25 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import List from "components/List/List";
 import { IData } from "data/types";
-import TableFooter from "./TableFooter";
 import { paginate } from "../../utils/paginate";
 import TableHeader from "./TableHeader";
 
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import Pagination from "./Pagination";
+
+const tableHeadings = [
+  { id: 1, name: "ID", dataName: "id" },
+  { id: 2, name: "Job ID", dataName: "originalId" },
+  { id: 3, name: "Client Name", dataName: "clientName" },
+  { id: 4, name: "Industry", dataName: "industry" },
+  { id: 5, name: "Booking Grade", dataName: "bookingGrade" },
+  { id: 6, name: "OP Unit", dataName: "operatingUnit" },
+  { id: 7, name: "Office City", dataName: "officeCity" },
+  { id: 8, name: "Skills", dataName: "skills" },
+  { id: 9, name: "Time Duration", dataName: "timeDuration" },
+];
 
 interface TableProps {
   data: IData[];
@@ -19,12 +31,11 @@ interface IPeople {
 }
 
 const people: IPeople[] = [
-  { id: 1, name: "Wade Cooper" },
-  { id: 2, name: "Arlene Mccoy" },
-  { id: 3, name: "Devon Webb" },
-  { id: 4, name: "Tom Cook" },
-  { id: 5, name: "Tanya Fox" },
-  { id: 6, name: "Hellen Schmidt" },
+  { id: 1, name: "Client Name" },
+  { id: 2, name: "Industry" },
+  { id: 3, name: "Booking Grade" },
+  { id: 4, name: "OP Unit" },
+  { id: 5, name: "Office City" },
 ];
 
 function ComboboxFilter() {
@@ -66,7 +77,7 @@ function ComboboxFilter() {
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1  ring-opacity-5 focus:outline-none sm:text-sm">
               {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                   Nothing found.
@@ -114,37 +125,65 @@ function ComboboxFilter() {
 }
 
 const Table: React.FC<TableProps> = ({ data }) => {
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [sortedAndFilteredData, setSortedAndFilteredData] = useState<IData[]>(
+    []
+  );
+
+  useEffect(() => {
+    const paginatedData = paginate(data, currentPage, pageSize);
+    setSortedAndFilteredData(paginatedData);
+  }, [data, currentPage, pageSize]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  if (data.length === 0) return <p>There are no items to display.</p>;
+  const handleSort = (headingName: string) => {
+    let sortedData = [...sortedAndFilteredData].sort((a, b) =>
+      // @ts-ignore
+      a[headingName].localeCompare(b[headingName], "en", { numeric: true })
+    );
 
-  const paginatedData = paginate(data, currentPage, pageSize);
+    setSortedAndFilteredData(sortedData);
+  };
+
+  if (data.length === 0) return <p>There are no items to display.</p>;
 
   return (
     <>
-      <div className="p-4">
-        <ComboboxFilter />
+      <div className="flex py-4">
+        <div className="py-4 px-4">Filter by:</div>
+        <div>
+          <ComboboxFilter />
+        </div>
+        <div className="p-4">Type to Search:</div>
+        <div>
+          <ComboboxFilter />
+        </div>
       </div>
 
-      <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500">
-          <TableHeader />
-          <tbody>
-            <List data={paginatedData} />
-          </tbody>
-        </table>
-      </div>
-
-      <TableFooter
+      <Pagination
         itemsCount={data.length}
         pageSize={pageSize}
         currentPage={currentPage}
-        handlePageChange={handlePageChange}
+        onPageChange={handlePageChange}
+      />
+
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500">
+          <TableHeader tableHeadings={tableHeadings} handleSort={handleSort} />
+          <List data={sortedAndFilteredData} />
+        </table>
+      </div>
+
+      <Pagination
+        itemsCount={data.length}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
       />
     </>
   );
