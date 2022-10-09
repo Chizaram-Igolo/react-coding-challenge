@@ -19,8 +19,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({
         {tableHeadings.map((th) =>
           th.dataName === "id" ||
           th.dataName === "originalId" ||
-          th.dataName === "skills" ||
-          th.dataName === "timeDuration" ? (
+          th.dataName === "skills" ? (
             <th scope="col" className="py-3 px-4" key={th.dataName}>
               {th.name}
             </th>

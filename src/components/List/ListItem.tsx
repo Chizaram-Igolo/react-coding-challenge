@@ -1,4 +1,5 @@
 import { IData } from "data/types";
+import { formatAMPM } from "utils/formatDateTime";
 
 interface ListProps {
   item: IData;
@@ -35,19 +36,6 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
     talentGradeBadgeClassNames = "bg-green-200 text-green-800 ";
   }
 
-  const formatAMPM = (date: Date) => {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let ampm = hours >= 12 ? "pm" : "am";
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    let minutesStr = minutes.toString().padStart(2, "0");
-    let strTime = hours + ":" + minutesStr + " " + ampm;
-    return strTime;
-  };
-
-  console.log(formatAMPM(new Date(item.startDate)));
-
   const startDate =
     new Date(item.startDate).toDateString() +
     ", " +
@@ -76,8 +64,11 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
       >
         <div>
           <div className="text-base font-semibold">{item.clientName}</div>
-          <div className="flex items-center font-normal text-gray-700">
-            <div>Managed by: {item.jobManagerName}</div>
+          <div className="flex items-center font-normal text-gray-500">
+            <div>
+              Managed by:{" "}
+              <span className="text-gray-900">{item.jobManagerName}</span>
+            </div>
 
             <div className="flex -space-x-4 ml-4">
               <div className="w-8 h-8 pt-1 text-center text-white rounded-full border-2 border-white bg-slate-600 hover:bg-gray-600">
@@ -94,8 +85,11 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
             </div>
           </div>
           <div className="flex items-center font-normal">
-            <div className="font-normal text-gray-700">
-              Talent: {item.talentName ? item.talentName : "—"}
+            <div className="font-normal text-gray-500">
+              Talent:{" "}
+              <span className="text-gray-900">
+                {item.talentName ? item.talentName : "—"}
+              </span>
             </div>
           </div>
           {item.talentName && (
@@ -111,18 +105,22 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
           )}
         </div>
       </th>
-      <td className="py-4 px-4">{item.industry}</td>
+      <td className="py-4 px-4 text-gray-900">{item.industry}</td>
 
-      <td className="py-4 px-4">
-        {item.bookingGrade ? <>{item.bookingGrade}</> : "n/a"}
+      <td className="py-4 px-4 ">
+        {item.bookingGrade ? (
+          <span className="text-gray-900">{item.bookingGrade}</span>
+        ) : (
+          "n/a"
+        )}
       </td>
 
-      <td className="py-4 px-4">{item.operatingUnit}</td>
+      <td className="py-4 px-4 text-gray-900">{item.operatingUnit}</td>
 
       <td scope="row" className="py-4 px-4 text-gray-900 whitespace-nowrap">
         <div>
           <div>{item.officeCity}</div>
-          <div className="mt-1 font-normal text-gray-700">
+          <div className="mt-1 font-normal text-xs text-gray-700">
             Postal Code: {item.officePostalCode}
           </div>
         </div>
@@ -133,20 +131,28 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
         <div>
           {(item.requiredSkills || []).map((skill, idx) =>
             idx === (item.requiredSkills || []).length - 1 ? (
-              <span key={skill.name}>{skill.name}</span>
+              <span key={skill.name} className="text-gray-900">
+                {skill.name}
+              </span>
             ) : (
-              <span key={skill.name}>{skill.name}, </span>
+              <span key={skill.name} className="text-gray-900">
+                {skill.name},{" "}
+              </span>
             )
           )}
           {item.requiredSkills?.length === 0 && <>n/a</>}
         </div>
-        <div className="font-normal text-xs text-gray-700 mt-2">
+        <div className="font-normal text-xs text-gray-500 mt-2">
           Optional:{" "}
           {(item.optionalSkills || []).map((skill, idx) =>
             idx === (item.optionalSkills || []).length - 1 ? (
-              <span key={skill.name}>{skill.name}</span>
+              <span key={skill.name} className="text-gray-500">
+                {skill.name}
+              </span>
             ) : (
-              <span key={skill.name}>{skill.name}, </span>
+              <span key={skill.name} className="text-gray-500">
+                {skill.name},{" "}
+              </span>
             )
           )}
           {item.optionalSkills?.length === 0 && <>n/a</>}
