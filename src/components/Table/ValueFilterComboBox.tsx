@@ -36,7 +36,7 @@ const ValueFilterComboBox: React.FC<ValueFilterComboBoxProps> = ({
           onChangeFilterValue(val);
         }}
       >
-        <div className="relative w-[22rem] mt-1 z-50">
+        <div className="relative w-[28rem] mt-1 z-50">
           <div
             className="relative w-full cursor-default overflow-hidden 
                           rounded-lg bg-white text-left sm:text-sm"
@@ -88,7 +88,7 @@ const ValueFilterComboBox: React.FC<ValueFilterComboBoxProps> = ({
                       <>
                         <span
                           className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
+                            selected ? "font-FiraSans_Medium" : "font-normal"
                           }`}
                         >
                           {value}

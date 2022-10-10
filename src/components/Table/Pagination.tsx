@@ -45,14 +45,15 @@ const Pagination: React.FC<PaginationProps> = ({
                           border-[#bbb]"
             >
               Showing{" "}
-              <span className="font-medium">
+              <span className="font-FiraSans_Medium">
                 {(currentPage - 1) * pageSize + 1}
               </span>{" "}
               to{" "}
-              <span className="font-medium">
+              <span className="font-FiraSans_Medium">
                 {lastItemNum < itemsCount ? lastItemNum : itemsCount}
               </span>{" "}
-              of <span className="font-medium">{itemsCount}</span> results
+              of <span className="font-FiraSans_Medium">{itemsCount}</span>{" "}
+              results
             </p>
 
             <form
@@ -83,7 +84,7 @@ const Pagination: React.FC<PaginationProps> = ({
                   type="submit"
                   className="h-8 w-24 text-white bg-blue-600 
                            hover:bg-blue-700 focus:ring-4 focus:outline-none 
-                           focus:ring-blue-300 font-medium rounded-md text-sm 
+                           focus:ring-blue-300 font-FiraSans_Medium rounded-md text-sm 
                            sm:w-auto px-5 py-[7px] text-center"
                 >
                   Save
@@ -101,7 +102,7 @@ const Pagination: React.FC<PaginationProps> = ({
               type="button"
               className="relative inline-flex items-center rounded-l-md 
                          border border-gray-300 bg-white px-2 py-2 text-sm 
-                         font-medium text-gray-500 hover:bg-gray-50 
+                         font-FiraSans_Medium text-gray-500 hover:bg-gray-50 
                          focus:z-20 cursor-pointer"
               onClick={() =>
                 onPageChange(currentPage === 1 ? 1 : currentPage - 1)
@@ -115,7 +116,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 <button
                   type="button"
                   className={`relative inline-flex items-center border px-4 
-                              py-2 text-sm font-medium hover:bg-gray-50 
+                              py-2 text-sm font-FiraSans_Medium hover:bg-gray-50 
                               focus:z-20 cursor-pointer ${
                                 page === currentPage
                                   ? "z-10 border-indigo-500 bg-indigo-50 " +
@@ -133,7 +134,7 @@ const Pagination: React.FC<PaginationProps> = ({
               <span
                 className="relative inline-flex items-center border 
                        border-gray-300 bg-white px-4 py-2 text-sm 
-                        font-medium text-gray-700"
+                        font-FiraSans_Medium text-gray-700"
               >
                 ...
               </span>
@@ -143,7 +144,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 <button
                   type="button"
                   className={`relative inline-flex items-center border px-4 
-                              py-2 text-sm font-medium hover:bg-gray-50 
+                              py-2 text-sm font-FiraSans_Medium hover:bg-gray-50 
                               focus:z-20 cursor-pointer ${
                                 page === currentPage
                                   ? "z-10 border-indigo-500 bg-indigo-50 " +
@@ -160,7 +161,7 @@ const Pagination: React.FC<PaginationProps> = ({
               type="button"
               className="relative inline-flex items-center rounded-r-md 
                          border border-gray-300 bg-white px-2 py-2 text-sm 
-                         font-medium text-gray-500 hover:bg-gray-50 
+                         font-FiraSans_Medium text-gray-500 hover:bg-gray-50 
                          focus:z-20 cursor-pointer"
               onClick={() =>
                 onPageChange(

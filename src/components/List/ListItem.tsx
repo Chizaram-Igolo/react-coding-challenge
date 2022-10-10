@@ -49,7 +49,7 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
     <tr className="bg-white border-b hover:bg-gray-50 cursor-pointer">
       <td className="py-4 pl-6 pr-2">{item.id}</td>
 
-      <td scope="row" className="py-4 px-4 text-gray-900 whitespace-nowrap">
+      <td className="py-4 px-4 text-gray-900 whitespace-nowrap">
         <div>
           <div>{item.originalId}</div>
           <div className="font-normal text-gray-700 flex items-center mt-1">
@@ -63,7 +63,9 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
         className="flex items-center py-4 px-4 text-gray-900 whitespace-nowrap"
       >
         <div>
-          <div className="text-base font-semibold">{item.clientName}</div>
+          <div className="text-base font-FiraSans_SemiBold">
+            {item.clientName}
+          </div>
           <div className="flex items-center font-normal text-gray-500">
             <div>
               Managed by:{" "}
@@ -95,7 +97,7 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
           {item.talentName && (
             <div className="mt-1 pl-12 font-normal text-xs text-gray-700">
               <span
-                className={`${talentGradeBadgeClassNames} text-sm font-medium 
+                className={`${talentGradeBadgeClassNames} text-sm font-FiraSans_Medium 
                               mr-2 px-2.5 py-0.5 rounded 
                           `}
               >
@@ -117,7 +119,7 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
 
       <td className="py-4 px-4 text-gray-900">{item.operatingUnit}</td>
 
-      <td scope="row" className="py-4 px-4 text-gray-900 whitespace-nowrap">
+      <td className="py-4 px-4 text-gray-900 whitespace-nowrap">
         <div>
           <div>{item.officeCity}</div>
           <div className="mt-1 font-normal text-xs text-gray-700">
@@ -159,16 +161,15 @@ const ListItem: React.FC<ListProps> = ({ item }) => {
         </div>
       </td>
 
-      <td
-        scope="row"
-        className="flex items-center py-4 px-4 text-gray-900 whitespace-nowrap"
-      >
+      <td className="flex items-center py-4 px-4 text-gray-900 whitespace-nowrap">
         <div>
           <div className="">{startDate}</div>
           <div className="">{endDate}</div>
           <div className="font-normal text-sm text-gray-700 mt-1">
             Total Hours:{" "}
-            <span className="font-bold">{item.totalHours} hrs</span>
+            <span className="font-FiraSans_SemiBold text-gray-800">
+              {item.totalHours} hrs
+            </span>
           </div>
         </div>
       </td>

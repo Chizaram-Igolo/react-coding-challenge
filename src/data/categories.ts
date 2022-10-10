@@ -6,7 +6,7 @@ export const tableHeadings = [
   { id: 5, name: "Booking Grade", dataName: "bookingGrade" },
   { id: 6, name: "OP Unit", dataName: "operatingUnit" },
   { id: 7, name: "Office City", dataName: "officeCity" },
-  { id: 8, name: "Skills", dataName: "skills" },
+  { id: 8, name: "Skills", dataName: "requiredSkills" },
   { id: 9, name: "Time Duration", dataName: "totalHours" },
 ];
 

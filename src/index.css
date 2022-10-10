@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "fonts.css";
+
 body {
   margin: 0;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "FiraSans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

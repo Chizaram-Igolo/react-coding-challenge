@@ -17,10 +17,12 @@ const TableHeader: React.FC<TableHeaderProps> = ({
     <thead className="text-xs text-gray-700 uppercase bg-gray-50">
       <tr>
         {tableHeadings.map((th) =>
-          th.dataName === "id" ||
-          th.dataName === "originalId" ||
-          th.dataName === "skills" ? (
-            <th scope="col" className="py-3 px-4" key={th.dataName}>
+          th.dataName === "id" || th.dataName === "originalId" ? (
+            <th
+              scope="col"
+              className="py-3 px-4 font-FiraSans_SemiBold"
+              key={th.dataName}
+            >
               {th.name}
             </th>
           ) : (

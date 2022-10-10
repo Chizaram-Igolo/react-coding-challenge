@@ -94,7 +94,7 @@ const SubsetFilterComboBox: React.FC<SubsetFilterComboBoxProps> = ({
                       <>
                         <span
                           className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
+                            selected ? "font-FiraSans_Medium" : "font-normal"
                           }`}
                         >
                           {subset.name}
