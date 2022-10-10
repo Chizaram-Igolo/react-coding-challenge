@@ -20,20 +20,20 @@ Meet **_daash_** 🦅, the dashboard that gives super-vision to your planning te
 
 ## Overview (Graphs) view
 
-Create a simple single-page application that allows a planner to get insights
-into client and planning information.
-
-You will find the corresponding data to display in `planning.json`, which
-contains around 10k records.
-
 ## Product Specification
 
-As derived from the requirements given in the assessment.
+A SPA that:
+
+- Tabulates the given data and makes it navigable.
+- Allows filtering and sorting of columns.
+- Presents statistical overview.
 
 ### User Stories
 
+As derived from the requirements given in the assessment.
+
 - As a user, I want my planning data in tabular view so that I can browse through it.
-- As a user, I want to get an a graphical representation of at least one of:
+- As a user, I want to get a graphical representation of at least one of:
   - booking grade
   - office city
   - skill
